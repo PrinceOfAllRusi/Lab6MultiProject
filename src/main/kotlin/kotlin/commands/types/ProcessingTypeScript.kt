@@ -2,15 +2,17 @@ package commands.types
 
 import tools.ReadFile
 import tools.input.Input
+import tools.ConcreteCommand
 
 class ProcessingTypeScript: ProcessingType {
-    override fun processing(input: Input): Map<String, Any>? {
+    override fun processing(input: Input, abstractCommand: ConcreteCommand): ConcreteCommand {
         val reader = ReadFile()
-        val s: String? = reader.read(input)
+        var s: String? = reader.read(input)
         if (s == null) {
-            return null
+            s = ""
         }
-        val map: Map<String, Any> = mapOf("script" to s)
-        return map
+        abstractCommand.setScript(s)
+
+        return abstractCommand
     }
 }

@@ -1,11 +1,14 @@
 package commands.types
 
 import tools.input.Input
+import tools.ConcreteCommand
 
 class ProcessingTypeArg: ProcessingType {
-    override fun processing(input: Input): Map<String, Any> {
-        val value = input.getNextWord(null)
-        val map: Map<String, Any> = mapOf("value" to value)
-        return map
+    override fun processing(input: Input, abstractCommand: ConcreteCommand): ConcreteCommand {
+        val id = input.getNextWord(null).toInt()
+        val org = abstractCommand.getOrganization()
+        org.setId(id)
+        abstractCommand.setOrganization(org)
+        return abstractCommand
     }
 }

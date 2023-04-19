@@ -1,34 +1,30 @@
 package tools
 
+import com.fasterxml.jackson.databind.module.SimpleModule
+import com.fasterxml.jackson.dataformat.xml.XmlMapper
+import com.fasterxml.jackson.module.kotlin.readValue
 import org.koin.core.component.KoinComponent
 import org.koin.core.component.inject
+import serializ.TimeSerializer
 import tools.input.Input
-import tools.input.InputFile
 import tools.result.Result
+import tools.serializ.TimeDeserializer
 import java.net.DatagramPacket
 import java.net.DatagramSocket
 import java.net.InetAddress
+import java.time.LocalDateTime
 
-/**
- * Command processor
- *
- * @constructor Create empty Command processor
- */
 class CommandProcessor: KoinComponent {
 
     private val commandsList: CommandsList by inject()
 
-    /**
-     * Process
-     *
-     * @param input
-     */
     fun process(input: Input) {
 
-        var result: Result? = Result(false)
-        var mapData: Map<String, Any>?
+        val result: Result = Result(false)
 
         var command = ""
+        val abstractCommand = ConcreteCommand()
+        var concreteCommand = ConcreteCommand()
 
         val port = 6789
         val host: InetAddress = InetAddress.getLocalHost()
@@ -39,20 +35,19 @@ class CommandProcessor: KoinComponent {
         var receivingPacket: DatagramPacket
         var receivedData = ""
 
+        val mapper = XmlMapper()
+        val module = SimpleModule()
+        module.addSerializer(LocalDateTime::class.java, TimeSerializer())
+        module.addDeserializer(LocalDateTime::class.java, TimeDeserializer())
+        mapper.registerModule(module)
+        var xml = ""
+
 
 
         while ( true ) {
 
-            result?.setMessage("")
+            concreteCommand.setMessage("")
             command = input.getNextWord(null).lowercase()
-
-//            sendingDataBuffer = command.toByteArray()
-//
-//            sendingPacket = DatagramPacket(sendingDataBuffer, sendingDataBuffer.size, host, port)
-//            clientSocket.send(sendingPacket)
-//            receivingPacket = DatagramPacket(receivingDataBuffer, receivingDataBuffer.size)
-//            clientSocket.receive(receivingPacket)
-//            receivedData = String(receivingPacket.data)
 
             if ( !commandsList.containsCommand(command) ) {
                 input.outMsg("Такой команды не существует\n")
@@ -63,14 +58,25 @@ class CommandProcessor: KoinComponent {
                     if ( type == null ) {
                         continue
                     }
-                    mapData = commandsList.getType(type)?.processing(input)
-                    result = commandsList.getCommand(command)?.action(mapData)
+                    abstractCommand.setName(command)
+                    concreteCommand = commandsList.getType(type)?.processing(input, abstractCommand)!!
+//                    result = commandsList.getCommand(command)?.action(mapData)
+                    xml = mapper.writeValueAsString(concreteCommand)
+
+                    sendingDataBuffer = xml.toByteArray()
+                    sendingPacket = DatagramPacket(sendingDataBuffer, sendingDataBuffer.size, host, port)
+                    clientSocket.send(sendingPacket)
+
+                    receivingPacket = DatagramPacket(receivingDataBuffer, receivingDataBuffer.size)
+                    clientSocket.receive(receivingPacket)
+                    receivedData = String(receivingPacket.data)
+
+                    concreteCommand = mapper.readValue<ConcreteCommand>(receivedData)
+
+                    concreteCommand.getMessage()
 
                 } catch ( e: NumberFormatException ) {
                     input.outMsg("Неверные данные\n")
-                    if ( input.javaClass == InputFile("").javaClass ) {
-                        continue
-                    }
                 } catch ( e: NullPointerException ) {
                     input.outMsg("Введены не все данные\n")
                 }
@@ -78,7 +84,7 @@ class CommandProcessor: KoinComponent {
             if ( result != null ) {
                 input.outMsg(result.getMessage())
             }
-            if (result?.getExit() == true) {
+            if (result.getExit() == true) {
                 break
             }
 

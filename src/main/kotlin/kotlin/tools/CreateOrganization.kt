@@ -27,7 +27,7 @@ class CreateOrganization: KoinComponent {
      * @param org
      * @return
      */
-    fun create(input: Input, org: Organization? ): Organization? {
+    fun create(input: Input, org: Organization? ): Organization {
 
         var organization: Organization = Organization()
         organization.setId(-1)
@@ -50,11 +50,8 @@ class CreateOrganization: KoinComponent {
                     break
                 }
                 input.outMsg("Неподходящие данные\n")
-                if ( input.javaClass == InputFile("").javaClass ) {
-                    return null
-                }
             } else {
-                organization.setName(newName!!)
+                organization.setName(newName)
                 break
             }
         }
@@ -70,23 +67,17 @@ class CreateOrganization: KoinComponent {
 
                 if ( newAnnualTurnover.isBlank() || newAnnualTurnover.toInt() <= 0 ) {
                     if ( org != null ) {
-                        organization.setAnnualTurnover( annualTurnover!!.toDouble() )
+                        organization.setAnnualTurnover( annualTurnover.toDouble() )
                         break
                     }
                     input.outMsg( "Неподходящие данные\n")
-                    if ( input.javaClass == InputFile("").javaClass ) {
-                        return null
-                    }
                 }
                 else {
-                    organization.setAnnualTurnover( newAnnualTurnover!!.toDouble() )
+                    organization.setAnnualTurnover( newAnnualTurnover.toDouble() )
                     break
                 }
             } catch ( e: NumberFormatException ) {
                 input.outMsg( "Неверный тип данных\n" )
-                if ( input.javaClass == InputFile("").javaClass ) {
-                    return null
-                }
             }
         }
 
@@ -101,23 +92,17 @@ class CreateOrganization: KoinComponent {
 
                 if ( newEmployeesCount.isBlank() || newEmployeesCount.toInt() <= 0 ) {
                     if ( org != null ) {
-                        organization.setEmployeesCount( employeesCount!!.toInt() )
+                        organization.setEmployeesCount( employeesCount.toInt() )
                         break
                     }
                     input.outMsg( "Неподходящие данные\n" )
-                    if ( input.javaClass == InputFile("").javaClass ) {
-                        return null
-                    }
                 }
                 else {
-                    organization.setEmployeesCount(newEmployeesCount!!.toInt())
+                    organization.setEmployeesCount(newEmployeesCount.toInt())
                     break
                 }
             } catch (e: NumberFormatException) {
                 input.outMsg( "Неверный тип данных\n" )
-                if ( input.javaClass == InputFile("").javaClass ) {
-                    return null
-                }
             }
         }
 
@@ -139,19 +124,13 @@ class CreateOrganization: KoinComponent {
                         break
                     }
                     input.outMsg( "Неподходящие данные\n" )
-                    if ( input.javaClass == InputFile("").javaClass ) {
-                        return null
-                    }
                 }
                 else {
-                    organization.setCoordinatesX(newX!!.toInt())
+                    organization.setCoordinatesX(newX.toInt())
                     break
                 }
             } catch ( e: NumberFormatException ) {
                 input.outMsg( "Неверный тип данных\n" )
-                if ( input.javaClass == InputFile("").javaClass ) {
-                    return null
-                }
             }
         }
         while ( true ) {
@@ -164,19 +143,13 @@ class CreateOrganization: KoinComponent {
                         break
                     }
                     input.outMsg( "Неподходящие данные\n" )
-                    if ( input.javaClass == InputFile("").javaClass ) {
-                        return null
-                    }
                 }
                 else {
-                    organization.setCoordinatesY(newY!!.toLong())
+                    organization.setCoordinatesY(newY.toLong())
                     break
                 }
             } catch ( e: NumberFormatException ) {
                 input.outMsg( "Неверный тип данных\n" )
-                if ( input.javaClass == InputFile("").javaClass ) {
-                    return null
-                }
             }
         }
 
@@ -201,18 +174,12 @@ class CreateOrganization: KoinComponent {
                         break
                     }
                     input.outMsg( "Неподходящие данные\n" )
-                    if ( input.javaClass == InputFile("").javaClass ) {
-                        return null
-                    }
                 } else {
                     organization.setType( OrganizationType.valueOf( newTypeOrganization.uppercase() ) )
                     break
                 }
             } catch ( e: IllegalArgumentException ) {
                 input.outMsg( "Неподходящие данные\n" )
-                if ( input.javaClass == InputFile("").javaClass ) {
-                    return null
-                }
             }
         }
 
@@ -232,9 +199,6 @@ class CreateOrganization: KoinComponent {
                     break
                 }
                 input.outMsg( "Неподходящие данные\n" )
-                if ( input.javaClass == InputFile("").javaClass ) {
-                    return null
-                }
             }
             else {
                 organization.setPostalAddressStreet(newStreet)
@@ -249,9 +213,6 @@ class CreateOrganization: KoinComponent {
                     break
                 }
                 input.outMsg( "Неподходящие данные\n" )
-                if ( input.javaClass == InputFile("").javaClass ) {
-                    return null
-                }
             }
             else {
                 organization.setPostalAddressZipCode(newCode)

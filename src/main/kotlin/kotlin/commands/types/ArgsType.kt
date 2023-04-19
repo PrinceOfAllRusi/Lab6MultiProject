@@ -6,6 +6,5 @@ enum class ArgsType {
     NO_ARG,
     ARG_WITH_OBJECT,
     INDEX_WITH_OBJECT,
-    SCRIPT,
-    FILE
+    SCRIPT
 }

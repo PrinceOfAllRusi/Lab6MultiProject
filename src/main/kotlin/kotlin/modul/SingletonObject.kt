@@ -48,13 +48,12 @@ object SingletonObject {
         val processingTypeArgWhiteObject = ProcessingTypeObject()
         val processingTypeIndexWithObject = ProcessingTypeIndexWithObject()
         val processingTypeString = ProcessingTypeScript()
-        val processingTypeWriteFile = ProcessingTypeWriteFile()
 
         val mapType: Map<ArgsType, ProcessingType> = mapOf( ArgsType.OBJECT to processingTypeObject,
             ArgsType.ARG to processingTypeArg, ArgsType.NO_ARG to processingTypeNoArg,
             ArgsType.ARG_WITH_OBJECT to processingTypeArgWhiteObject,
             ArgsType.INDEX_WITH_OBJECT to processingTypeIndexWithObject,
-            ArgsType.SCRIPT to processingTypeString, ArgsType.FILE to processingTypeWriteFile)
+            ArgsType.SCRIPT to processingTypeString)
 
         val CommandsList: CommandsList = CommandsList( mapCommand, mapType )
 
