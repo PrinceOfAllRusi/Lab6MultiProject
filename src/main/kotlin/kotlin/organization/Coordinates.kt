@@ -6,8 +6,9 @@ package organization
  * @constructor Create empty Coordinates
  */
 class Coordinates {
-    private var x: Int //Значение поля должно быть больше -312, Поле не может быть null
-    private var y: Long //Максимальное значение поля: 212
+    private var x: Int = 0 //Значение поля должно быть больше -312, Поле не может быть null
+    private var y: Long = 0 //Максимальное значение поля: 212
+    constructor(){}
     constructor(x: Int, y: Long) {
         this.x = x
         this.y = y

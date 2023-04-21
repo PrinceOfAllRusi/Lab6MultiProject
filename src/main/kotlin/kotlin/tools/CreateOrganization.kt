@@ -10,23 +10,12 @@ import tools.input.InputFile
 import java.lang.Integer.max
 
 
-/**
- * Create organization
- *
- * @constructor Create empty Create organization
- */
 class CreateOrganization: KoinComponent {
 
     private val orgs: MyCollection<Organization> by inject()
     private var counter: Int = 0
 
-    /**
-     * Create
-     *
-     * @param input
-     * @param org
-     * @return
-     */
+
     fun create(input: Input, org: Organization? ): Organization {
 
         var organization: Organization = Organization()

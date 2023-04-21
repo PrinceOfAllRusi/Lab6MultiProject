@@ -6,9 +6,9 @@ package organization
  * @constructor Create empty Address
  */
 class Address {
-    private var street: String //Строка не может быть пустой, Поле не может быть null
-    private var zipCode: String //Длина строки не должна быть больше 27, Поле не может быть null
-
+    private var street: String = "" //Строка не может быть пустой, Поле не может быть null
+    private var zipCode: String = "" //Длина строки не должна быть больше 27, Поле не может быть null
+    constructor(){}
     constructor(street: String, zipCode: String) {
         this.street = street
         this.zipCode = zipCode

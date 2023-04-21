@@ -5,10 +5,6 @@ import tools.input.InputSystem
 import org.koin.core.context.GlobalContext.startKoin
 import tools.ConversionXMLtoObject
 
-/**
- * Main
- *
- */
 fun main() {
 
     startKoin {

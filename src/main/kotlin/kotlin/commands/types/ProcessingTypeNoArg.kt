@@ -1,5 +1,6 @@
 package commands.types
 
+import commands.Help
 import tools.input.Input
 import tools.ConcreteCommand
 

@@ -4,7 +4,8 @@ import organization.Organization
 
 class ConcreteCommand {
     private var name: String = ""
-    private var index: Int = 0
+    private var index: Int = -1
+    private var counter: Int = 0
     private var organization: Organization = Organization()
     private var script: String = ""
     private var message: String = ""

@@ -1,4 +1,4 @@
-package tools.serializ
+package serializ
 
 import com.fasterxml.jackson.core.JsonParser
 import com.fasterxml.jackson.core.JsonProcessingException
