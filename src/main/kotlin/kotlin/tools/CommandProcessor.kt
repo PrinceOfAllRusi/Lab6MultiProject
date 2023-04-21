@@ -9,6 +9,7 @@ import serializ.TimeSerializer
 import tools.input.Input
 import tools.result.Result
 import serializ.TimeDeserializer
+import transmittedData.CommandsData
 import java.net.DatagramPacket
 import java.net.DatagramSocket
 import java.net.InetAddress
@@ -17,7 +18,7 @@ import java.time.LocalDateTime
 
 class CommandProcessor: KoinComponent {
 
-//    private val commandsList: CommandsList by inject()
+    private val commandsList: CommandsList by inject()
 
     fun process(input: Input) {
 
@@ -53,9 +54,14 @@ class CommandProcessor: KoinComponent {
         clientSocket.receive(receivingPacket)
         receivedData = String(receivingPacket.data, 0, receivingPacket.length)
 
-        System.out.println(receivedData)
+//        System.out.println(receivedData)
 
-        val commandsList = mapper.readValue<CommandsList>(receivedData)
+        val commandsData = mapper.readValue<CommandsData>(receivedData)
+
+//        System.out.println("!!!!!!!!!!!!!!!!!")
+//        System.out.println(commandsData.getCommandsList())
+
+
 
 
         while ( true ) {
