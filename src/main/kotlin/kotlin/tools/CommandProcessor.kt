@@ -1,36 +1,34 @@
 package tools
 
+import CommandsData.ClientCommandsData
 import com.fasterxml.jackson.databind.module.SimpleModule
 import com.fasterxml.jackson.dataformat.xml.XmlMapper
 import com.fasterxml.jackson.module.kotlin.readValue
 import org.koin.core.component.KoinComponent
-import org.koin.core.component.inject
 import serializ.TimeSerializer
 import tools.input.Input
 import tools.result.Result
 import serializ.TimeDeserializer
-import transmittedData.CommandsData
+import transmittedData.ServerCommandsData
 import java.net.DatagramPacket
 import java.net.DatagramSocket
 import java.net.InetAddress
-import java.net.InetSocketAddress
 import java.time.LocalDateTime
 
 class CommandProcessor: KoinComponent {
 
-    private val commandsList: CommandsList by inject()
 
     fun process(input: Input) {
 
-        val result: Result = Result(false)
+        var result: Result = Result()
 
         var command = ""
-        val abstractCommand = ConcreteCommand()
-        var concreteCommand = ConcreteCommand()
+        var commandsList = ServerCommandsData()
+        var sendCommandsData: ClientCommandsData? = ClientCommandsData()
+        val dataProcessor = DataProcessing()
 
         val port = 6789
         val host: InetAddress = InetAddress.getLocalHost()
-//        val host: InetSocketAddress = InetSocketAddress("172.28.28.21", 3032)
         val clientSocket  = DatagramSocket()
         var sendingDataBuffer = ByteArray(65535)
         val receivingDataBuffer = ByteArray(65535)
@@ -47,65 +45,51 @@ class CommandProcessor: KoinComponent {
 
         sendingDataBuffer = xml.toByteArray()
         sendingPacket = DatagramPacket(sendingDataBuffer, sendingDataBuffer.size, host, port)
-//                    sendingPacket = DatagramPacket(sendingDataBuffer, sendingDataBuffer.size, host)
         clientSocket.send(sendingPacket)
 
         receivingPacket = DatagramPacket(receivingDataBuffer, receivingDataBuffer.size)
+
         clientSocket.receive(receivingPacket)
-        receivedData = String(receivingPacket.data, 0, receivingPacket.length)
+        xml = String(receivingPacket.data, 0, receivingPacket.length)
 
-//        System.out.println(receivedData)
-
-        val commandsData = mapper.readValue<CommandsData>(receivedData)
-
-//        System.out.println("!!!!!!!!!!!!!!!!!")
-//        System.out.println(commandsData.getCommandsList())
-
-
-
+        commandsList = mapper.readValue<ServerCommandsData>(xml)
 
         while ( true ) {
 
-            concreteCommand.setMessage("")
+            result.setMessage("")
+
             command = input.getNextWord(null).lowercase()
 
-            if ( !commandsList.containsCommand(command) ) {
+            if ( !commandsList.getMapCommands().containsKey(command) ) {
                 input.outMsg("Такой команды не существует\n")
             }
             else {
                 try {
-                    val type = commandsList.getCommand(command)?.getType()
-                    if ( type == null ) {
-                        continue
-                    }
-                    abstractCommand.setName(command)
-                    concreteCommand = commandsList.getType(type)?.processing(input, abstractCommand)!!
-//                    result = commandsList.getCommand(command)?.action(mapData)
-                    xml = mapper.writeValueAsString(concreteCommand)
+                    sendCommandsData = dataProcessor.setData(input, commandsList.getMapCommands()[command]!!)
+
+                    xml = mapper.writeValueAsString(sendCommandsData)
+
+                    System.out.println(xml)
 
                     sendingDataBuffer = xml.toByteArray()
                     sendingPacket = DatagramPacket(sendingDataBuffer, sendingDataBuffer.size, host, port)
-//                    sendingPacket = DatagramPacket(sendingDataBuffer, sendingDataBuffer.size, host)
                     clientSocket.send(sendingPacket)
 
                     receivingPacket = DatagramPacket(receivingDataBuffer, receivingDataBuffer.size)
                     clientSocket.receive(receivingPacket)
                     receivedData = String(receivingPacket.data, 0, receivingPacket.length)
 
-//                    System.out.println(receivedData)
+                    System.out.println(receivedData)
 
-                    concreteCommand = mapper.readValue<ConcreteCommand>(receivedData)
+                    result = mapper.readValue<Result>(receivedData)
 
-                    input.outMsg(concreteCommand.getMessage())
+                    input.outMsg(result.getMessage())
 
                 } catch ( e: NumberFormatException ) {
                     input.outMsg("Неверные данные\n")
                 } catch ( e: NullPointerException ) {
                     input.outMsg("Введены не все данные\n")
                 }
-            }
-            if ( result != null ) {
-                input.outMsg(result.getMessage())
             }
             if (result.getExit() == true) {
                 break

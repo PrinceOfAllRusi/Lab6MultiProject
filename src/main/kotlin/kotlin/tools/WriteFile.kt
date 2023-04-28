@@ -6,22 +6,11 @@ import java.io.BufferedWriter
 import java.io.FileWriter
 import java.io.IOException
 
-/**
- * Write file
- *
- * @constructor Create empty Write file
- */
 class WriteFile {
-    /**
-     * Write
-     *
-     * @param input
-     * @param s
-     * @return
-     */
+
     fun write(way: String, dataStr: String): Result? {
         val env = way
-        val result = Result(false)
+        val result = Result()
 
         val path = System.getenv(env)
         if (path == null) {
