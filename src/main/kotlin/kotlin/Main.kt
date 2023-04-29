@@ -2,7 +2,6 @@ import modul.SingletonObject.mod
 import tools.CommandProcessor
 import tools.input.InputSystem
 import org.koin.core.context.GlobalContext.startKoin
-import organization.OrganizationType
 
 fun main() {
 

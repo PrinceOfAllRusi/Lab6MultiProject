@@ -50,6 +50,7 @@ class CommandProcessor: KoinComponent {
         receivingPacket = DatagramPacket(receivingDataBuffer, receivingDataBuffer.size)
 
         clientSocket.receive(receivingPacket)
+
         xml = String(receivingPacket.data, 0, receivingPacket.length)
 
         commandsList = mapper.readValue<ServerCommandsData>(xml)
@@ -67,9 +68,9 @@ class CommandProcessor: KoinComponent {
                 try {
                     sendCommandsData = dataProcessor.setData(input, commandsList.getMapCommands()[command]!!)
 
-                    xml = mapper.writeValueAsString(sendCommandsData)
+                    sendCommandsData.setName(command)
 
-                    System.out.println(xml)
+                    xml = mapper.writeValueAsString(sendCommandsData)
 
                     sendingDataBuffer = xml.toByteArray()
                     sendingPacket = DatagramPacket(sendingDataBuffer, sendingDataBuffer.size, host, port)
@@ -78,8 +79,6 @@ class CommandProcessor: KoinComponent {
                     receivingPacket = DatagramPacket(receivingDataBuffer, receivingDataBuffer.size)
                     clientSocket.receive(receivingPacket)
                     receivedData = String(receivingPacket.data, 0, receivingPacket.length)
-
-                    System.out.println(receivedData)
 
                     result = mapper.readValue<Result>(receivedData)
 
@@ -94,7 +93,6 @@ class CommandProcessor: KoinComponent {
             if (result.getExit() == true) {
                 break
             }
-
         }
 
     }
