@@ -1,0 +1,208 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="d3029cd4-295c-40f0-8340-2b7b2042e203" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/.gitattributes" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/.name" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/compiler.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/gradle.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/jarRepositories.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/kotlinc.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/build-logic/build.gradle.kts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/build-logic/settings.gradle.kts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/build-logic/src/main/kotlin/multilib.kotlin-application-conventions.gradle.kts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/build-logic/src/main/kotlin/multilib.kotlin-common-conventions.gradle.kts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/build-logic/src/main/kotlin/multilib.kotlin-library-conventions.gradle.kts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/client/src/main/kotlin/multilib/client/commandsData/ServerCommandsData.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/gradle.properties" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/gradle/wrapper/gradle-wrapper.jar" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/gradle/wrapper/gradle-wrapper.properties" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/gradlew" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/gradlew.bat" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/server/build.gradle.kts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/server/src/main/kotlin/multilib/server/Server.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/server/src/main/kotlin/multilib/server/commands/AbstractCommand.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/server/src/main/kotlin/multilib/server/commands/Add.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/server/src/main/kotlin/multilib/server/commands/Clear.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/server/src/main/kotlin/multilib/server/commands/CountGreaterThanAnnualTurnover.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/server/src/main/kotlin/multilib/server/commands/ExecuteScript.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/server/src/main/kotlin/multilib/server/commands/Exit.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/server/src/main/kotlin/multilib/server/commands/FilterStartsWithName.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/server/src/main/kotlin/multilib/server/commands/Help.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/server/src/main/kotlin/multilib/server/commands/Info.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/server/src/main/kotlin/multilib/server/commands/InsertAt.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/server/src/main/kotlin/multilib/server/commands/RemoveAllByEmployeesCount.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/server/src/main/kotlin/multilib/server/commands/RemoveAt.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/server/src/main/kotlin/multilib/server/commands/RemoveById.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/server/src/main/kotlin/multilib/server/commands/RemoveLower.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/server/src/main/kotlin/multilib/server/commands/Save.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/server/src/main/kotlin/multilib/server/commands/Show.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/server/src/main/kotlin/multilib/server/commands/Update.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/server/src/main/kotlin/multilib/server/commandsData/ServerCommandsData.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/server/src/main/kotlin/multilib/server/modul/SingletonObject.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/server/src/main/kotlin/multilib/server/organization/Address.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/server/src/main/kotlin/multilib/server/organization/Coordinates.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/server/src/main/kotlin/multilib/server/organization/MyCollection.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/server/src/main/kotlin/multilib/server/organization/Organization.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/server/src/main/kotlin/multilib/server/organization/OrganizationComparator.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/server/src/main/kotlin/multilib/server/organization/OrganizationType.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/server/src/main/kotlin/multilib/server/serializ/Serializer.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/server/src/main/kotlin/multilib/server/serializ/TimeDeserializer.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/server/src/main/kotlin/multilib/server/serializ/TimeSerializer.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/server/src/main/kotlin/multilib/server/tools/CommandProcessor.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/server/src/main/kotlin/multilib/server/tools/CommandsList.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/server/src/main/kotlin/multilib/server/tools/ConversionXMLtoObject.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/server/src/main/kotlin/multilib/server/tools/CreateOrganization.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/server/src/main/kotlin/multilib/server/tools/DataList.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/server/src/main/kotlin/multilib/server/tools/file/ReadFile.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/server/src/main/kotlin/multilib/server/tools/file/WriteFile.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/server/src/main/kotlin/multilib/server/tools/input/Input.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/server/src/main/kotlin/multilib/server/tools/input/InputFile.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/server/src/main/kotlin/multilib/server/tools/input/InputSystem.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/server/src/main/kotlin/multilib/server/tools/result/Result.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/settings.gradle.kts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/utilities/build.gradle.kts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/utilities/src/main/kotlin/multilib/utilities/commandsData/ClientCommandsData.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/utilities/src/main/kotlin/multilib/utilities/modul/SingletonObject.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/utilities/src/main/kotlin/multilib/utilities/serializ/TimeDeserializer.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/utilities/src/main/kotlin/multilib/utilities/serializ/TimeSerializer.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../.gitignore" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../.idea/.gitignore" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../.idea/.name" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../.idea/gradle.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../.idea/inspectionProfiles/Project_Default.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../.idea/kotlinc.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../.idea/misc.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../.idea/vcs.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Lab6/.gradle/7.4.2/executionHistory/executionHistory.bin" beforeDir="false" afterPath="$PROJECT_DIR$/../Lab6/.gradle/7.4.2/executionHistory/executionHistory.bin" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Lab6/.gradle/7.4.2/executionHistory/executionHistory.lock" beforeDir="false" afterPath="$PROJECT_DIR$/../Lab6/.gradle/7.4.2/executionHistory/executionHistory.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Lab6/.gradle/7.4.2/fileHashes/fileHashes.bin" beforeDir="false" afterPath="$PROJECT_DIR$/../Lab6/.gradle/7.4.2/fileHashes/fileHashes.bin" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Lab6/.gradle/7.4.2/fileHashes/fileHashes.lock" beforeDir="false" afterPath="$PROJECT_DIR$/../Lab6/.gradle/7.4.2/fileHashes/fileHashes.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Lab6/.gradle/buildOutputCleanup/buildOutputCleanup.lock" beforeDir="false" afterPath="$PROJECT_DIR$/../Lab6/.gradle/buildOutputCleanup/buildOutputCleanup.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Lab6/.gradle/buildOutputCleanup/outputFiles.bin" beforeDir="false" afterPath="$PROJECT_DIR$/../Lab6/.gradle/buildOutputCleanup/outputFiles.bin" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Lab6/.gradle/file-system.probe" beforeDir="false" afterPath="$PROJECT_DIR$/../Lab6/.gradle/file-system.probe" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Lab6/.idea/gradle.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../Lab6/.idea/gradle.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Lab6/build.gradle.kts" beforeDir="false" afterPath="$PROJECT_DIR$/../Lab6/build.gradle.kts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../build.gradle.kts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../gradle.properties" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../gradle/wrapper/gradle-wrapper.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../gradle/wrapper/gradle-wrapper.properties" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../gradlew" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../gradlew.bat" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../settings.gradle.kts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/main/kotlin/kotlin/Main.kt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/main/kotlin/kotlin/commandsData/ClientCommandsData.kt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/main/kotlin/kotlin/commandsData/ServerCommandsData.kt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/main/kotlin/kotlin/modul/SingletonObject.kt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/main/kotlin/kotlin/organization/OrganizationType.kt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/main/kotlin/kotlin/serializ/TimeDeserializer.kt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/main/kotlin/kotlin/serializ/TimeSerializer.kt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/main/kotlin/kotlin/tools/CommandProcessor.kt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/main/kotlin/kotlin/tools/DataProcessing.kt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/main/kotlin/kotlin/tools/ReadFile.kt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/main/kotlin/kotlin/tools/WriteFile.kt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/main/kotlin/kotlin/tools/input/Input.kt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/main/kotlin/kotlin/tools/input/InputFile.kt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/main/kotlin/kotlin/tools/input/InputSystem.kt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/main/kotlin/kotlin/tools/result/Result.kt" beforeDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="ExternalProjectsData">
+    <projectState path="$PROJECT_DIR$">
+      <ProjectState />
+    </projectState>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
+  </component>
+  <component name="MarkdownSettingsMigration">
+    <option name="stateVersion" value="1" />
+  </component>
+  <component name="ProjectId" id="2PBE3ByBT9U9lddF7ratTkdTNii" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "last_opened_file_path": "D:/JavaP/lab6Ktln/test/client/src/main/kotlin/multilib/client"
+  }
+}]]></component>
+  <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="D:\JavaP\lab6Ktln\test\client\src\main\kotlin\multilib\client" />
+      <recent name="D:\JavaP\lab6Ktln\test\server\src\main\kotlin\multilib\server" />
+    </key>
+  </component>
+  <component name="RunManager" selected="Gradle.test [client:run]">
+    <configuration name="test [client:run]" type="GradleRunConfiguration" factoryName="Gradle" nameIsGenerated="true">
+      <ExternalSystemSettings>
+        <option name="executionName" />
+        <option name="externalProjectPath" value="$PROJECT_DIR$" />
+        <option name="externalSystemIdString" value="GRADLE" />
+        <option name="scriptParameters" value="" />
+        <option name="taskDescriptions">
+          <list />
+        </option>
+        <option name="taskNames">
+          <list>
+            <option value="client:run" />
+          </list>
+        </option>
+        <option name="vmOptions" />
+      </ExternalSystemSettings>
+      <ExternalSystemDebugServerProcess>true</ExternalSystemDebugServerProcess>
+      <ExternalSystemReattachDebugProcess>true</ExternalSystemReattachDebugProcess>
+      <DebugAllEnabled>false</DebugAllEnabled>
+      <method v="2" />
+    </configuration>
+    <configuration name="test [server:run]" type="GradleRunConfiguration" factoryName="Gradle" nameIsGenerated="true">
+      <ExternalSystemSettings>
+        <option name="executionName" />
+        <option name="externalProjectPath" value="$PROJECT_DIR$" />
+        <option name="externalSystemIdString" value="GRADLE" />
+        <option name="scriptParameters" value="" />
+        <option name="taskDescriptions">
+          <list />
+        </option>
+        <option name="taskNames">
+          <list>
+            <option value="server:run" />
+          </list>
+        </option>
+        <option name="vmOptions" />
+      </ExternalSystemSettings>
+      <ExternalSystemDebugServerProcess>true</ExternalSystemDebugServerProcess>
+      <ExternalSystemReattachDebugProcess>true</ExternalSystemReattachDebugProcess>
+      <DebugAllEnabled>false</DebugAllEnabled>
+      <method v="2" />
+    </configuration>
+    <list>
+      <item itemvalue="Gradle.test [client:run]" />
+      <item itemvalue="Gradle.test [server:run]" />
+    </list>
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="d3029cd4-295c-40f0-8340-2b7b2042e203" name="Changes" comment="" />
+      <created>1682921876387</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1682921876387</updated>
+    </task>
+    <servers />
+  </component>
+</project>
