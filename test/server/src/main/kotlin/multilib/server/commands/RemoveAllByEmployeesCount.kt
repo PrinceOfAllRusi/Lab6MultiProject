@@ -10,7 +10,7 @@ import tools.result.Result
 class RemoveAllByEmployeesCount : AbstractCommand(), KoinComponent {
 
     private val orgs: MyCollection<Organization> by inject()
-    private val description: String = "удалить из коллекции все элементы, значение поля employeesCount которого эквивалентно заданному"
+    private val description: String = "remove from the collection all elements whose employeesCount field value is equivalent to the given one"
     private var fields: Map<String, Map<String, String>> = mapOf(
         "value" to mapOf<String, String>(
             "type" to "Int",
@@ -29,7 +29,7 @@ class RemoveAllByEmployeesCount : AbstractCommand(), KoinComponent {
             }
         }
         if (newOrgs.size == 0) {
-            result.setMessage("Таких организаций не найдено\n")
+            result.setMessage("No such organizations found\n")
             return result
         }
         for ( org in newOrgs ) {

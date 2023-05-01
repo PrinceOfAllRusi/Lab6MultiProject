@@ -1,5 +1,6 @@
 package tools
 
+import multilib.client.tools.ScriptProcessor
 import multilib.utilities.commandsData.ClientCommandsData
 import organization.OrganizationType
 import tools.input.Input
@@ -10,6 +11,12 @@ class DataProcessing {
         val sendCommandsData = ClientCommandsData()
 
         if (data.size == 0) {
+            return sendCommandsData
+        }
+        if (data.containsKey("script")) {
+            val env = input.getNextWord(data["script"]!!["title"])
+            val script = ScriptProcessor().action(env)
+            sendCommandsData.getMapData().put("script", script)
             return sendCommandsData
         }
 
@@ -25,7 +32,7 @@ class DataProcessing {
                         value.toInt()
                         if (data["value"]!!.containsKey("min")) {
                             if (value.toInt() < data["value"]!!["min"]!!.toInt()) {
-                                input.outMsg("Слишком маленькое значение\n")
+                                input.outMsg("Too small value\n")
                                 return sendCommandsData
                             }
                         }
@@ -37,7 +44,7 @@ class DataProcessing {
                     }
                 }
             } catch (e: NullPointerException) {
-                input.outMsg("Неверный тип данных\n")
+                input.outMsg("Invalid data type\n")
                 return sendCommandsData
             }
         }
@@ -55,7 +62,7 @@ class DataProcessing {
                         sendCommandsData.getMapData().put(key, value)
                         break
                     } else {
-                        input.outMsg("Поле не может быть пустым\n")
+                        input.outMsg("The field can not be empty\n")
                         continue
                     }
                 }
@@ -67,25 +74,25 @@ class DataProcessing {
                         "OrganizationType" -> OrganizationType.valueOf(value.uppercase())
                     }
                 } catch (e: NullPointerException) {
-                    input.outMsg("Поле не может быть пустым\n")
+                    input.outMsg("The field can not be empty\n")
                     continue
                 } catch (e: IllegalArgumentException) {
-                    input.outMsg("Неверный тип данных\n")
+                    input.outMsg("Invalid data type\n")
                     continue
                 }
                 if (map.containsKey("min")) {
                     if (value.toInt() < map["min"]!!.toInt()) {
-                        input.outMsg("Слишком маленькое значение\n")
+                        input.outMsg("Too small value\n")
                         continue
                     }
                 } else if (map.containsKey("max")) {
                     if (value.toInt() > map["max"]!!.toInt()) {
-                        input.outMsg("Слишком большое значение\n")
+                        input.outMsg("Too much value\n")
                         continue
                     }
                 } else if (map.containsKey("length")) {
                     if (value.length > map["length"]!!.toInt()) {
-                        input.outMsg("Слишком большое значение\n")
+                        input.outMsg("Too much value\n")
                         continue
                     }
                 }

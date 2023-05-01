@@ -10,7 +10,7 @@ import tools.result.Result
 class RemoveById: AbstractCommand(), KoinComponent {
 
     private val orgs: MyCollection<Organization> by inject()
-    private val description: String = "удалить элемент из коллекции по его id"
+    private val description: String = "remove element from collection by its id"
     private var fields: Map<String, Map<String, String>> = mapOf(
         "value" to mapOf<String, String>(
             "type" to "Int",
@@ -32,7 +32,7 @@ class RemoveById: AbstractCommand(), KoinComponent {
         }
         val result = Result()
         if (condition) result.setMessage("Done\n")
-        else result.setMessage("Такой огранизации нет в колекции\n")
+        else result.setMessage("This organization is not in the collection\n")
 
         return result
     }

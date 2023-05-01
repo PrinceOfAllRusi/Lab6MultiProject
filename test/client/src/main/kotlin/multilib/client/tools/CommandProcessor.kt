@@ -1,19 +1,14 @@
 package tools
 
-import com.fasterxml.jackson.databind.module.SimpleModule
-import com.fasterxml.jackson.dataformat.xml.XmlMapper
-import com.fasterxml.jackson.module.kotlin.readValue
 import org.koin.core.component.KoinComponent
 import tools.input.Input
 import tools.result.Result
-import multilib.utilities.serializ.TimeDeserializer
-import multilib.utilities.serializ.TimeSerializer
 import multilib.utilities.commandsData.*
 import multilib.client.commandsData.ServerCommandsData
 import java.net.DatagramPacket
 import java.net.DatagramSocket
 import java.net.InetAddress
-import java.time.LocalDateTime
+import multilib.utilities.serializ.Serializer
 
 class CommandProcessor: KoinComponent {
 
@@ -21,6 +16,7 @@ class CommandProcessor: KoinComponent {
     fun process(input: Input) {
 
         var result: Result = Result()
+        val serializer = Serializer()
 
         var command = ""
         var commandsList = ServerCommandsData()
@@ -36,11 +32,6 @@ class CommandProcessor: KoinComponent {
         var receivingPacket: DatagramPacket
         var receivedData = ""
 
-        val mapper = XmlMapper()
-        val module = SimpleModule()
-        module.addSerializer(LocalDateTime::class.java, TimeSerializer())
-        module.addDeserializer(LocalDateTime::class.java, TimeDeserializer())
-        mapper.registerModule(module)
         var xml = ""
 
         sendingDataBuffer = xml.toByteArray()
@@ -52,9 +43,8 @@ class CommandProcessor: KoinComponent {
         clientSocket.receive(receivingPacket)
 
         xml = String(receivingPacket.data, 0, receivingPacket.length)
-        println(xml)
 
-        commandsList = mapper.readValue<ServerCommandsData>(xml)
+        commandsList = serializer.deserialize(xml)
 
         while ( true ) {
 
@@ -63,7 +53,7 @@ class CommandProcessor: KoinComponent {
             command = input.getNextWord(null).lowercase()
 
             if ( !commandsList.getMapCommands().containsKey(command) ) {
-                input.outMsg("Такой команды не существует\n")
+                input.outMsg("This command does not exist\n")
             }
             else {
                 try {
@@ -71,7 +61,7 @@ class CommandProcessor: KoinComponent {
 
                     sendCommandsData.setName(command)
 
-                    xml = mapper.writerWithDefaultPrettyPrinter().writeValueAsString(sendCommandsData)
+                    xml = serializer.serialize(sendCommandsData)
 
                     sendingDataBuffer = xml.toByteArray()
                     sendingPacket = DatagramPacket(sendingDataBuffer, sendingDataBuffer.size, host, port)
@@ -81,14 +71,14 @@ class CommandProcessor: KoinComponent {
                     clientSocket.receive(receivingPacket)
                     receivedData = String(receivingPacket.data, 0, receivingPacket.length)
 
-                    result = mapper.readValue<Result>(receivedData)
+                    result = serializer.deserialize(receivedData)
 
                     input.outMsg(result.getMessage())
 
                 } catch ( e: NumberFormatException ) {
-                    input.outMsg("Неверные данные\n")
+                    input.outMsg("Wrong data\n")
                 } catch ( e: NullPointerException ) {
-                    input.outMsg("Введены не все данные\n")
+                    input.outMsg("Not all data entered\n")
                 }
             }
             if (result.getExit() == true) {

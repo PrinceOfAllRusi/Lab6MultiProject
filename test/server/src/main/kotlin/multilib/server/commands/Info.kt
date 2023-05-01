@@ -9,13 +9,13 @@ import tools.result.Result
 class Info : AbstractCommand(), KoinComponent {
 
     private val orgs: MyCollection<Organization> by inject()
-    private val description: String = "вывести информацию о коллекции"
+    private val description: String = "display information about the collection"
     private var fields: Map<String, Map<String, String>> = mapOf()
     override fun action(data: Map<String, String?>): Result {
         val s = StringBuilder()
-        s.append( "Тип коллекции " + orgs.javaClass.toString() + "\n" )
-        s.append( "Дата инициализации " + orgs.getCreationDate() + "\n" )
-        s.append( "Количество элементов " + orgs.size + "\n" )
+        s.append( "Collection type " + orgs.javaClass.toString() + "\n" )
+        s.append( "Initialization date " + orgs.getCreationDate() + "\n" )
+        s.append( "Amount of elements " + orgs.size + "\n" )
         val result = Result()
         result.setMessage(s.toString())
 

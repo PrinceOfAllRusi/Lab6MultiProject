@@ -12,13 +12,13 @@ class InsertAt: AbstractCommand, KoinComponent {
 
     private val orgs: MyCollection<Organization> by inject()
     private val create: CreateOrganization by inject()
-    private val description: String = "добавить новый элемент в заданную позицию"
+    private val description: String = "add a new element at a given position"
     private val type: String
     private var fields: Map<String, Map<String, String>>
 
     constructor() {
         val typeStr = StringBuilder()
-        typeStr.append( "Выбирете тип вашей организации из данных вариантов\n" )
+        typeStr.append( "Select your organization type from these options\n" )
         val organizationType = OrganizationType.values()
         for ( i in organizationType.indices ) {
             typeStr.append( organizationType[i].toString() + "\n" )
@@ -30,26 +30,26 @@ class InsertAt: AbstractCommand, KoinComponent {
                 "type" to "Int"
             ),
             "name" to mapOf<String, String>(
-                "title" to "Введите название вашей организации\n",
+                "title" to "Enter the name of your organization\n",
                 "type" to "String"
             ),
             "annualTurnover" to  mapOf<String, String>(
-                "title" to "Введите годовой оборот вашей организации\n",
+                "title" to "Enter the annual turnover of your organization\n",
                 "type" to "Double",
                 "min" to "1"
             ),
             "employeesCount" to mapOf<String, String>(
-                "title" to "Введите количество сотрудников в вашей организации\n",
+                "title" to "Enter the number of employees in your organization\n",
                 "type" to "Int",
                 "min" to "1"
             ),
             "x" to mapOf<String, String>(
-                "title" to "Введите координаты вашей организации по оси X\n",
+                "title" to "Enter your organization's X coordinates\n",
                 "type" to "Int",
                 "min" to "-312"
             ),
             "y" to mapOf<String, String>(
-                "title" to "Введите координаты вашей организации по оси Y\n",
+                "title" to "Enter your organization's Y coordinates\n",
                 "type" to "Long",
                 "max" to "212"
             ),
@@ -58,11 +58,11 @@ class InsertAt: AbstractCommand, KoinComponent {
                 "type" to "OrganizationType"
             ),
             "street" to mapOf<String, String>(
-                "title" to "Введите название улицы, на которой расположена ваша организация\n",
+                "title" to "Enter the name of the street where your organization is located\n",
                 "type" to "String"
             ),
             "zipCode" to mapOf<String, String>(
-                "title" to "Введите код улицы, на которой расположена ваша организация\n",
+                "title" to "Enter the street code where your organization is located",
                 "type" to "String",
                 "length" to "27"
             )

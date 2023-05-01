@@ -1,10 +1,9 @@
-package serializ
+package multilib.utilities.serializ
 
 
 import com.fasterxml.jackson.databind.module.SimpleModule
 import com.fasterxml.jackson.dataformat.xml.XmlMapper
 import com.fasterxml.jackson.module.kotlin.readValue
-import tools.serializ.TimeDeserializer
 import java.time.LocalDateTime
 
 class Serializer {

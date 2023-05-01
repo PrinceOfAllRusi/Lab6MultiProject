@@ -18,14 +18,14 @@ class Organization {
     override fun toString(): String {
         val formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss")
         val s = StringBuilder()
-        s.append("Id организации: ").append(id)
-        s.append("\nИмя организации: ").append(name)
-        s.append("\nКоординаты организации: ").append(coordinates.toString())
-        s.append("\nВремя создания организации: ").append(creationDate!!.format(formatter))
-        s.append("\nГодовой оборот организации: ").append(annualTurnover)
-        s.append("\nКоличество сотрудников в организации: ").append(employeesCount)
-        s.append("\nТип организации: ").append(type)
-        s.append("\nНазвание и код улицы, на которой расположена организация: ").append(postalAddress.toString()).append("\n")
+        s.append("Organization id: ").append(id)
+        s.append("\nOrganization name: ").append(name)
+        s.append("\nОrganization coordinates: ").append(coordinates.toString())
+        s.append("\nOrganization creation time: ").append(creationDate!!.format(formatter))
+        s.append("\nAnnual turnover of the organization: ").append(annualTurnover)
+        s.append("\nNumber of employees in the organization: ").append(employeesCount)
+        s.append("\nOrganization type: ").append(type)
+        s.append("\nName and code of the street where the organization is located: ").append(postalAddress.toString()).append("\n")
         return s.toString()
     }
     fun getEmployeesCount(): Int? = employeesCount

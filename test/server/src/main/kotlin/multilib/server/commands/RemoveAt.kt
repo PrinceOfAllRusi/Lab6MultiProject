@@ -9,7 +9,7 @@ import tools.result.Result
 class RemoveAt: AbstractCommand(), KoinComponent {
 
     private val orgs: MyCollection<Organization> by inject()
-    private val description: String = "удалить элемент, находящийся в заданной позиции коллекции"
+    private val description: String = "remove the element at the given position in the collection"
     private var fields: Map<String, Map<String, String>> = mapOf(
         "value" to mapOf<String, String>(
             "type" to "Int",
@@ -25,7 +25,7 @@ class RemoveAt: AbstractCommand(), KoinComponent {
             orgs.removeAt(index)
             result.setMessage("Done\n")
         } catch (e: IndexOutOfBoundsException) {
-            result.setMessage("Неверные данные\n")
+            result.setMessage("Wrong data\n")
         }
 
         return result

@@ -10,27 +10,22 @@ import tools.DataList
 class ExecuteScript: AbstractCommand(), KoinComponent {
 
     private val absoluteWay: DataList by inject()
-    private val description: String = "считать и исполнить скрипт из указанного файла"
+    private val description: String = "read and execute a script from the specified file"
     private var fields: Map<String, Map<String, String>> = mapOf(
         "script" to mapOf<String, String>(
-            "title" to "Введите переменную окружения содержащую путь к файлу\n",
+            "title" to "Enter an environment variable containing the path to the file\n",
             "type" to "String"
         )
     )
-    override fun action(data: Map<String, String?>): Result? {
+    override fun action(data: Map<String, String?>): Result {
 
-        val s = data["script"].toString()
+        val s = data["script"]
 
-        val input = InputFile(s)
 
-        val commandProcessor = CommandProcessor()
-            commandProcessor.process(input)
+        val result = Result()
+        result.setMessage("Done\n")
 
-        input.close()
-
-        absoluteWay.getScriptList().removeLast()
-
-        return null
+        return result
     }
     override fun getDescription(): String = description
     override fun getFields() = fields

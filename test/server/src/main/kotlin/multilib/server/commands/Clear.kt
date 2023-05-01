@@ -11,7 +11,7 @@ class Clear: AbstractCommand(), KoinComponent {
 
     private val orgs: MyCollection<Organization> by inject()
     private val creator: CreateOrganization by inject()
-    private val description: String = "очистить коллекцию"
+    private val description: String = "clear the collection"
     private var fields: Map<String, Map<String, String>> = mapOf()
 
     override fun action(data: Map<String, String?>): Result {

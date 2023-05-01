@@ -6,16 +6,16 @@ import org.koin.core.component.KoinComponent
 import org.koin.core.component.inject
 import organization.MyCollection
 import organization.Organization
-import serializ.TimeSerializer
+import multilib.utilities.serializ.TimeSerializer
 import tools.file.WriteFile
 import tools.result.Result
-import tools.serializ.TimeDeserializer
+import multilib.utilities.serializ.TimeDeserializer
 import java.time.LocalDateTime
 
 class Save: AbstractCommand(), KoinComponent {
 
     private val orgs: MyCollection<Organization> by inject()
-    private val description: String = "сохранить коллекцию в файл"
+    private val description: String = "save collection to file"
 
     override fun action(data: Map<String, String?>): Result {
         val writer = WriteFile()

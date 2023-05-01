@@ -11,7 +11,7 @@ import tools.result.Result
 class FilterStartsWithName: AbstractCommand(), KoinComponent {
 
     private val orgs: MyCollection<Organization> by inject()
-    private val description: String = "вывести элементы, значение поля name которых начинается с заданной подстроки"
+    private val description: String = "display elements whose name field value starts with the given substring"
     private var fields: Map<String, Map<String, String>> = mapOf(
         "value" to mapOf<String, String>(
             "type" to "String"

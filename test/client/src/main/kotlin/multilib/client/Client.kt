@@ -1,6 +1,6 @@
 package multilib.client
 
-import multilib.utilities.modul.SingletonObject
+import multilib.client.modul.SingletonObject
 import tools.CommandProcessor
 import tools.input.InputSystem
 import org.koin.core.context.GlobalContext.startKoin

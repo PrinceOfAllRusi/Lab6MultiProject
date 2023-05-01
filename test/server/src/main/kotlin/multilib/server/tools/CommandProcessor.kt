@@ -2,17 +2,15 @@ package tools
 
 import org.koin.core.component.KoinComponent
 import org.koin.core.component.inject
-import serializ.TimeSerializer
 import tools.input.Input
 import tools.input.InputFile
 import tools.result.Result
-import tools.serializ.TimeDeserializer
 import java.net.DatagramPacket
 import java.net.DatagramSocket
 import java.net.InetAddress
 import multilib.server.commandsData.ServerCommandsData
 import multilib.utilities.commandsData.*
-import serializ.Serializer
+import multilib.utilities.serializ.Serializer
 
 
 class CommandProcessor: KoinComponent {
@@ -53,25 +51,27 @@ class CommandProcessor: KoinComponent {
             if (clientList.getAddressList().size == 0 ||
                 !clientList.getAddressList().contains(port.toString() + host.toString())) {
 
-                println("!!!!!!!!!!!!!!!!!!")
                 clientList.getAddressList().add(port.toString() + host.toString())
 
                 outputPacket = DatagramPacket(sendingDataBuffer, sendingDataBuffer.size, host, port)
                 serverSocket.send(outputPacket) // отправляю список команд клиенту
 
+                input.outMsg("Client connected\n")
+
                 continue
             }
 
             xml = String(inputPacket.data, 0, inputPacket.length)
-
             receiveCommandsData = serializer.deserialize(xml)
 
             command = receiveCommandsData.getName()
 
+            input.outMsg("Client send command: " + command + "\n")
+
             result?.setMessage("")
 
             if ( !commandsList.containsCommand(command) ) {
-                result!!.setMessage("Такой команды не существует\n")
+                result!!.setMessage("This command does not exist\n")
             }
             else {
                 try {
@@ -79,16 +79,16 @@ class CommandProcessor: KoinComponent {
                     result = commandsList.getCommand(command)?.action(mapData)
 
                 } catch ( e: NumberFormatException ) {
-                    input.outMsg("Неверные данные\n")
+                    input.outMsg("Wrong data\n")
                     if ( input.javaClass == InputFile("").javaClass ) {
                         continue
                     }
                 } catch ( e: NullPointerException ) {
-                    input.outMsg("Введены не все данные\n")
+                    input.outMsg("Not all data entered\n")
                 }
             }
-            xml = serializer.serialize(result)
 
+            xml = serializer.serialize(result)
             sendingDataBuffer = xml.toByteArray()
 
             outputPacket = DatagramPacket(sendingDataBuffer, sendingDataBuffer.size, host, port)

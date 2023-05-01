@@ -10,7 +10,7 @@ import tools.result.Result
 class RemoveLower: AbstractCommand(), KoinComponent {
 
     private val orgs: MyCollection<Organization> by inject()
-    private val description: String = "удалить из коллекции все элементы, меньшие, чем заданный"
+    private val description: String = "remove from the collection all elements smaller than the given one"
     private var fields: Map<String, Map<String, String>> = mapOf(
         "value" to mapOf<String, String>(
             "type" to "Int",

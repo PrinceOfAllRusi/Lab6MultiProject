@@ -9,7 +9,7 @@ import tools.result.Result
 class CountGreaterThanAnnualTurnover: AbstractCommand(), KoinComponent {
 
     private val orgs: MyCollection<Organization> by inject()
-    private val description: String = "вывести количество элементов, значение поля annualTurnover которых больше заданного"
+    private val description: String = "display the number of elements whose annualTurnover field value is greater than the given one"
     private var fields: Map<String, Map<String, String>> = mapOf(
         "value" to mapOf<String, String>(
             "type" to "Int"
