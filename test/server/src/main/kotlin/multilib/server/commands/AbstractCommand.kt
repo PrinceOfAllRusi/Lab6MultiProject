@@ -1,5 +1,8 @@
 package allForCommands.commands
 
+import multilib.utilities.commandsData.ClientCommandsData
+import tools.input.Input
+import tools.input.InputFile
 import tools.result.Result
 
 abstract class AbstractCommand {
@@ -15,4 +18,13 @@ abstract class AbstractCommand {
     }
     open fun getDescription(): String = description
     open fun getFields() = fields
+    open fun commandBuilding(mapData: MutableMap<String, String>, data: String): MutableMap<String, String> {
+        val input = InputFile(data)
+
+        for (key in fields.keys) {
+            mapData.put(key, input.getNextWord(null))
+        }
+
+        return mapData
+    }
 }

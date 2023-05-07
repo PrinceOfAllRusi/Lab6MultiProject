@@ -5,6 +5,7 @@ import tools.input.Input
 import tools.result.Result
 import multilib.utilities.commandsData.*
 import multilib.client.commandsData.ServerCommandsData
+import multilib.client.tools.socket.ClientSocket
 import java.net.DatagramPacket
 import java.net.DatagramSocket
 import java.net.InetAddress
@@ -17,32 +18,17 @@ class CommandProcessor: KoinComponent {
 
         var result: Result = Result()
         val serializer = Serializer()
+        val socket = ClientSocket()
 
         var command = ""
         var commandsList = ServerCommandsData()
         var sendCommandsData: ClientCommandsData = ClientCommandsData()
         val dataProcessor = DataProcessing()
-
-        val port = 1313
-        val host: InetAddress = InetAddress.getLocalHost()
-        val clientSocket  = DatagramSocket()
-        var sendingDataBuffer = ByteArray(65535)
-        val receivingDataBuffer = ByteArray(65535)
-        var sendingPacket: DatagramPacket
-        var receivingPacket: DatagramPacket
+        var xml = ""
         var receivedData = ""
 
-        var xml = ""
-
-        sendingDataBuffer = xml.toByteArray()
-        sendingPacket = DatagramPacket(sendingDataBuffer, sendingDataBuffer.size, host, port)
-        clientSocket.send(sendingPacket)
-
-        receivingPacket = DatagramPacket(receivingDataBuffer, receivingDataBuffer.size)
-
-        clientSocket.receive(receivingPacket)
-
-        xml = String(receivingPacket.data, 0, receivingPacket.length)
+        socket.send(xml)
+        xml = socket.receive()
 
         commandsList = serializer.deserialize(xml)
 
@@ -63,13 +49,8 @@ class CommandProcessor: KoinComponent {
 
                     xml = serializer.serialize(sendCommandsData)
 
-                    sendingDataBuffer = xml.toByteArray()
-                    sendingPacket = DatagramPacket(sendingDataBuffer, sendingDataBuffer.size, host, port)
-                    clientSocket.send(sendingPacket)
-
-                    receivingPacket = DatagramPacket(receivingDataBuffer, receivingDataBuffer.size)
-                    clientSocket.receive(receivingPacket)
-                    receivedData = String(receivingPacket.data, 0, receivingPacket.length)
+                    socket.send(xml)
+                    receivedData = socket.receive()
 
                     result = serializer.deserialize(receivedData)
 
