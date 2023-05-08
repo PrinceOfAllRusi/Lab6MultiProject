@@ -39,4 +39,7 @@ class ScriptProcessor: KoinComponent {
         
         return string.toString()
     }
+    fun clearScript() {
+        string.clear()
+    }
 }

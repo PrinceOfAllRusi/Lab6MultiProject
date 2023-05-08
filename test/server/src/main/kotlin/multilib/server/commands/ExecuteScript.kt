@@ -39,6 +39,7 @@ class ExecuteScript: AbstractCommand(), KoinComponent {
                     mapData = commandsList.getCommand(command)!!.commandBuilding(mapData, dataList)
                     commandsList.getCommand(command)!!.action(mapData)
                     dataList = ""
+                    mapData.clear()
                     command = data
                     continue
                 }

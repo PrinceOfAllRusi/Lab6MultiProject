@@ -15,8 +15,10 @@ class DataProcessing {
         }
         if (data.containsKey("script")) {
             val env = input.getNextWord(data["script"]!!["title"])
-            val script = ScriptProcessor().action(env)
+            val scriptProcessor = ScriptProcessor()
+            val script = scriptProcessor.action(env)
             sendCommandsData.getMapData().put("script", script)
+            scriptProcessor.clearScript()
             return sendCommandsData
         }
 

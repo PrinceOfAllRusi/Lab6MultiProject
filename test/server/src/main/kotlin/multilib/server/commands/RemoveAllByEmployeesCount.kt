@@ -4,6 +4,7 @@ import org.koin.core.component.KoinComponent
 import org.koin.core.component.inject
 import organization.MyCollection
 import organization.Organization
+import tools.input.InputFile
 import tools.result.Result
 
 
@@ -41,4 +42,13 @@ class RemoveAllByEmployeesCount : AbstractCommand(), KoinComponent {
     }
     override fun getDescription(): String = description
     override fun getFields() = fields
+    override fun commandBuilding(mapData: MutableMap<String, String>, data: String): MutableMap<String, String> {
+        val input = InputFile(data)
+
+        for (key in fields.keys) {
+            mapData.put(key, input.getNextWord(null))
+        }
+
+        return mapData
+    }
 }

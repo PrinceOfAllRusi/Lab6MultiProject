@@ -7,6 +7,7 @@ import organization.Organization
 import organization.OrganizationComparator
 import organization.OrganizationType
 import tools.CreateOrganization
+import tools.input.InputFile
 import tools.result.Result
 
 class Update: AbstractCommand, KoinComponent {
@@ -103,4 +104,13 @@ class Update: AbstractCommand, KoinComponent {
     }
     override fun getDescription(): String = description
     override fun getFields() = fields
+    override fun commandBuilding(mapData: MutableMap<String, String>, data: String): MutableMap<String, String> {
+        val input = InputFile(data)
+
+        for (key in fields.keys) {
+            mapData.put(key, input.getNextWord(null))
+        }
+
+        return mapData
+    }
 }

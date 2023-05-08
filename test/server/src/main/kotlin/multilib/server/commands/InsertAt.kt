@@ -6,6 +6,7 @@ import organization.MyCollection
 import organization.Organization
 import organization.OrganizationType
 import tools.CreateOrganization
+import tools.input.InputFile
 import tools.result.Result
 
 class InsertAt: AbstractCommand, KoinComponent {
@@ -78,10 +79,19 @@ class InsertAt: AbstractCommand, KoinComponent {
             orgs.add(index, org)
             result.setMessage("Done\n")
         } catch (e: IndexOutOfBoundsException) {
-            result.setMessage("Невозможно добавить в данную позицию\n")
+            result.setMessage("Cannot be added to this position\n")
         }
         return result
     }
     override fun getDescription(): String = description
     override fun getFields() = fields
+    override fun commandBuilding(mapData: MutableMap<String, String>, data: String): MutableMap<String, String> {
+        val input = InputFile(data)
+
+        for (key in fields.keys) {
+            mapData.put(key, input.getNextWord(null))
+        }
+
+        return mapData
+    }
 }
